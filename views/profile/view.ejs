@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <% include ../partials/menubar%>
+</head>
+
+<body class="margin">
+    <br>
+        <h4 style="margin-left: 50px;"> PROFIL</h4>
+        <form action="" method="POST" id="formProfil" style="margin: 10px 150px 10px 150px;">
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="email" name="checkEmail">
+                        <label class="form-check-label" for="id">
+                            Email
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-10">
+                    <div class="form-group">
+                        <input name="email" class="form-control" id="" placeholder="" value="<%= data.email%>" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" name="checkPassword" type="checkbox" id="password">
+                        <label class="form-check-label" name="checkPassword" for="checkPassword">
+                            Password
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="password" class="form-control" id="password" placeholder="kosongkan jika tidak mau mengganti password"
+                            value="<% data.password%>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            Position
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="form-group">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="position" id="mnj" value="Manager"
+                                <%= data.position == 'Manager' ? 'checked' : ''%>>
+                            <label class="form-check-label" for="Manager">
+                                Manajer
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="position" id="sd"
+                                value="Software Developer" <%= data.position == 'Software Developer' ? 'checked' : ''%>>
+                            <label class="form-check-label" for="softwareDeveloper">
+                                Software Developer
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="position" id="qa"
+                                value="Quality Assurance" <%= data.position == 'Quality Assurance' ? 'checked' : ''%>>
+                            <label class="form-check-label" for="qualityAssurance">
+                                Quality Assurance
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            Type
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="fulltime" name="typejob"
+                            value="fulltime" <%= data.typejob == 'fulltime' ? 'checked' : ''%>>
+                        <label class="custom-control-label" for="fulltime">Fulltime</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="part time" name="typejob"
+                            value="part time" <%= data.typejob == 'part time' ? 'checked' : ''%> >
+                        <label class="custom-control-label" for="part time">Part time</label>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issues</title>
+    <% include ../../partials/menubar%>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <% include ../../partials/sidebar%>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="container">
+                    <h3> ISSUES</h3>
+
+
+                    <div class="card-body">
+                        <form method="GET" id="formFilter">
+                            <input type="hidden" name="page" value="1">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="id" name="checkId">
+                                        <label class="form-check-label" for="id">
+                                            ID
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input type="text" name="memberId" class="form-control" id="id" placeholder="ID"
+                                            value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="checkName" type="checkbox" id="name">
+                                        <label class="form-check-label" for="checkName">
+                                            Subject
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control" id="name"
+                                            placeholder="name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="custom-control custom-checkbox mb-3" style="margin-top: 7px;">
+                                        <input class="custom-control-input" type="checkbox" id="issuesTracker"
+                                            name="checkTracker">
+                                        <label class="custom-control-label" for="issuesTracker">
+                                            Tracker
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-group" style="margin-right: 20px;">
+                                        <select id="issuesTracker" class="custom-select custom-select"
+                                            name="issuesTracker">
+                                            <option selected disabled>Choose the Tracker ...</option>
+                                            <option value="Bug">Bug</option>
+                                            <option value="Feature">Feature</option>
+                                            <option value="Support">Support</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">search</button>
+                    </form>
+
+
+
+                    <div class="container">
+                        <br>
+                        <h5>OPTIONS COLUMNS</h5>
+                        <form action="/projects/<%=projectid%>/issues/option" method="POST">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cid" name="checkid"
+                                            value="true" <%= option.issueid ? `checked` : `` %>>
+                                        <label class="form-check-label" for="cid">
+                                            ID
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cname" name="checksubject"
+                                            value="true" <%= option.subject ? `checked` : `` %>>
+                                        <label class="form-check-label" for="cname">
+                                            subject
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cposition"
+                                            name="checktracker" value="true" <%= option.tracker ? `checked` : `` %>>
+                                        <label class="form-check-label" for="cposition">
+                                            tracker
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cdescription"
+                                            name="checkdescription" value="true"
+                                            <%= option.description ? `checked` : `` %>>
+                                        <label class="form-check-label" for="cdescription">
+                                            description
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-success">apply</button>
+                        </form>
+
+                        <br>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th <%= option.issueid ? `` : `hidden` %>> ID </th>
+                                    <th <%= option.subject ? `` : `hidden` %>> SUBJECT</th>
+                                    <th <%= option.tracker ? `` : `hidden` %>> TRACKER </th>
+                                    <th <%= option.description ? `` : `hidden` %>> DESCRIPTION </th>
+                                    <th>ACTION</th>
+                            </thead>
+                            <% data.forEach((item, index) => {  %>
+                            <tr scope="row">
+                                <td <%= option.issueid ? `` : `hidden` %>>
+                                    <%=item.issueid%>
+                                </td>
+                                <td <%= option.subject ? `` : `hidden` %>> <%=item.subject%> </td>
+                                <td <%= option.tracker ? `` : `hidden` %>> <%=item.tracker%> </td>
+                                <td <%= option.description ? `` : `hidden` %>> <%=item.description%> </td>
+
+                                <td>
+                                    <a class="btn btn-outline-success"
+                                        href="/projects/<%=item.projectid%>/issues/edit/<%= item.issueid%>"> edit
+                                    </a>
+                                    <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');"
+                                        href="/projects/<%=item.projectid%>/issues/delete/<%= item.issueid%>">
+                                        delete
+                                    </a>
+                                </td>
+                            </tr>
+                            <%   }) %>
+                        </table>
+                        <br>
+
+                        <a href="/projects/<%= projectid %>/issues/add" <button class="btn btn-success">Add New
+                            Issue</button>
+                        </a>
+                        <br>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

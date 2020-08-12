@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/menubar%>
+</head>
+
+<body class="margin">
+
+    <div style="margin: 10px 100px 10px 150px;">
+        <br><br><br>
+        <h4>ADD NEW PROJECTS</h4>
+        <br>
+        <form action="" method="POST" id="formFilter" style="margin: 10px 50px 10px 150px;">
+
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" name="checkName" for="checkName">
+                        Name
+                    </label>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="projectname" class="form-control" id="name" placeholder="project name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                Members
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                <% data.forEach ((item,index) => { %>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="members" id="members<%= index + 1%>"
+                            value="<%= item.userid %>">
+                        <label class="form-check-label" for="members<%= index + 1%>">
+                            <%= item.fullname %>
+                        </label>
+                    </div>
+                <% }) %>
+            </div>
+            </div>
+            <br><br>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

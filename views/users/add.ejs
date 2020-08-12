@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <% include ../partials/menubar%>
+</head>
+<body>
+    <div style="margin: 10px 100px 10px 150px;">
+        <h3> ADD NEW USERS</h3>
+        <form action="" method="POST" id="formFilter" style="margin: 10px 100px 10px 150px;">
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" name="checkfirstName" type="checkbox" id="firstname">
+                        <label class="form-check-label" for="checkName">
+                            First name
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="firstname" class="form-control" id="firstname" placeholder="first name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" name="checklastName" type="checkbox" id="lastname">
+                        <label class="form-check-label" for="lastname">
+                            Last Name
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" name="checkEmail" type="checkbox" id="email">
+                        <label class="form-check-label" for="email">
+                            Email
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control" id="email" placeholder="email">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" name="checkPassword" type="checkbox" id="password">
+                        <label class="form-check-label" for="password">
+                            Password
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="password" class="form-control" id="password" placeholder="password">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="checkposition" id="member">
+                        <label class="form-check-label" for="member">
+                            Position 
+                        </label>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <select name="position" id="position" class="form-control">
+                            <option selected disabled> choose the position</option>
+                            <% data.forEach((item, index) => { %>
+                            <option value="<%= item.position %>"><%= item.position %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Type Job</legend>
+                <div class="col-sm-10">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="typejob" id="fulltime"
+                            value="fulltime">
+                        <label class="form-check-label" for="fulltime">
+                            Full time
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="typejob"
+                            id="parttime" value="parttime">
+                        <label class="form-check-label" for="parttime">
+                            Part time
+                        </label>
+                    </div>
+                </div>
+            </div>
+                
+            <br>
+                <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">As</legend>
+                    <div class="col-sm-10">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="as" id="admin"
+                                value="Admin">
+                            <label class="form-check-label" for="admin">
+                                Admin
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="as"
+                                id="user" value="User">
+                            <label class="form-check-label" for="user">
+                                User
+                            </label>
+                        </div>
+                    </div>
+                </div>
+          
+            
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+    </div>
+</body>
+</html>

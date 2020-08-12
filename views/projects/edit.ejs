@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/menubar%>
+</head>
+
+<body class="margin">
+
+    <div style="margin: 10px 100px 10px 150px;">
+        <br><br><br>
+        <h4>EDIT YOUR PROJECT</h4>
+        <br>
+
+        <div class="card border-info mb-3" style="font-family: initial;"></div>
+        <form action="" method="POST" style="margin: 10px 50px 10px 150px;">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" name="checkName" for="checkName">
+                        PROJECT NAME
+                    </label>
+                </div>
+                <div class="col-10">
+                    <div class="form-group">
+                        <input type="text" name="editprojectname" class="form-control" id="projectname" placeholder=""
+                            value="<%= nameProject.name%>">
+                    </div>
+                </div>
+
+
+                   
+                        <div class="col">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    MEMBERS
+                                </label>
+                            </div>
+                        </div>
+                   
+              
+                    <div class="col-sm-10">
+                        <% members.forEach ((item,index) => { %>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="editmembers" id="members<%=index+1%>"
+                                value="<%= item.userid %>" <%= dataMember.includes(item.userid) ? 'checked' : '' %>>
+
+                            <label class="form-check-label" for="members<%=index+1%>">
+                                <%= item.fullname %>
+                            </label>
+                        </div>
+                        <% }) %>
+                    
+                </div>
+            </div>
+            <br><br>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-outline-success">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>

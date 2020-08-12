@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard project</title>
+    <% include ../partials/menubar%>
+</head>
+
+<body class="margin">
+
+    <div style="margin: 10px 100px 10px 150px;">
+            <h3> DASHBOARD PROJECTS</h3>
+            <h4> Filters</h4>
+            <form method="GET" id="formFilter" style="margin: 10px 100px 10px 150px;">
+
+                <input type="hidden" name="page" value="1">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="id" name="checkId">
+                            <label class="form-check-label" for="id">
+                                ID
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-10">
+                        <div class="form-group">
+                            <input type="text" name="id" class="form-control" id="id" placeholder="ID" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" name="checkName" type="checkbox" id="name">
+                            <label class="form-check-label" for="checkName">
+                                Name
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="checkMember" id="member">
+                            <label class="form-check-label" for="member">
+                                Member
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="form-group">
+                            <select name="member" id="member" class="form-control">
+                                <option selected disabled> choose the member</option>
+                                <% result.forEach((item, index) => { %>
+                                <option value="<%= item.userid %>"><%= item.fullname %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">search</button>
+            </form>
+        </div>
+
+    <br><br>
+    <div style="margin: 10px 100px 10px 150px;">
+        <h5>OPTIONS COLUMNS</h5>
+        <form action="/projects/option" method="POST" style="margin-left: 50px;">
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="cid" name="checkid" value="true"
+                            <%= option.id ? `checked` : `` %>>
+                        <label class="form-check-label" for="cid">
+                            ID
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="cname" name="checkname" value="true"
+                            <%= option.name ? `checked` : `` %>>
+                        <label class="form-check-label" for="cname">
+                            Project Name
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="cmember" name="checkmember" value="true"
+                            <%= option.member ? `checked` : `` %>>
+                        <label class="form-check-label" for="cmember">
+                            Member
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">apply</button>
+
+        </form>
+
+        <br> <br>
+        <div style=" margin-left: 50px; margin-right: 50px;">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th <%= option.id ? `` : `hidden` %>> ID </th>
+                        <th <%= option.name ? `` : `hidden` %>> PROJECT NAME</th>
+                        <th <%= option.member ? `` : `hidden` %>> MEMBERS </th>
+                        <th>ACTION</th>
+                </thead>
+                <% hasil.forEach((item, index) => {  %>
+                <tr scope="row">
+                    <td <%= option.id ? `` : `hidden` %>>
+                        <a class="btn btn-outline-primary" href="/projects/<%=item.projectid%>/overview">
+                            <%=item.projectid%>
+                        </a>
+                    </td>
+                    <td <%= option.name ? `` : `hidden` %>><%=item.name%></td>
+                    <td <%= option.member ? `` : `hidden` %>><%=item.member%></td>
+                    <td>
+                        <a class="btn btn-outline-success" href="/projects/edit/<%=item.projectid%>"> edit
+                            </a>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');" href="/projects/delete/<%=item.projectid%>"> delete </a>
+                    </td>
+                </tr>
+                <%   }) %>
+            </table>
+            <br>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item <%= page==1 ? 'disabled' : '' %>"><a class="page-link"
+                            href="/projects<%= url.replace(`?page=${parseInt(page)}`, `?page=${ parseInt(page) - 1}`) %>">Previous</a>
+                    </li>
+                    <%for (let i=1; i <= pages; i++ ){%>
+                    <li class="page-item <%= (i == page) ? 'active' : '' %> "><a class="page-link"
+                            href="/projects<%= url.replace(`?page=${parseInt(page)}`,`?page=${i}`) %>"><%= i %></a>
+                    </li>
+                    <%}%>
+                          <li class="page-item <%= page==pages ? 'disabled' : '' %>"> <a class="page-link disabled"
+                        href="/projects<%= url.replace(`?page=${parseInt(page)}`,`?page=${parseInt(page) + 1}`) %>">Next</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <a href="/projects/add" <button class="btn btn-success">Add New Project</button> </a>
+        </div>
+
+</body>
+
+</html>

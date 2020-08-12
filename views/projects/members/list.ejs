@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members</title>
+    <% include ../../partials/menubar%>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <% include ../../partials/sidebar%>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="container">
+                    <h3> MEMBERS </h3>
+                    <h4> Filters</h4>
+                    <form method="GET" id="formFilter">
+
+                        <input type="hidden" name="page" value="1">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="id" name="checkId">
+                                    <label class="form-check-label" for="id">
+                                        ID
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <input type="text" name="memberId" class="form-control" id="id" placeholder="ID" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="checkName" type="checkbox" id="name">
+                                    <label class="form-check-label" for="checkName">
+                                        Name
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="checkPosition" id="member">
+                                    <label class="form-check-label" for="position">
+                                        Position
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <select name="memberPosition" id="position" class="form-control">
+                                        <option selected disabled> choose the position</option>
+                                        <% data.forEach((item, index) => { %>
+                                        <option value="<%= item.position %>"><%= item.role %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">search</button>
+                    </form>
+
+
+
+                    <div class="container">
+                        <br>
+                        <h5>OPTIONS COLUMNS</h5>
+                        <form action="/projects/<%=projectid%>/members/option" method="POST">
+                            <div class="row">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cid" name="checkid" value="true"
+                                        <%= option.id ? `checked` : `` %>>
+                                    <label class="form-check-label" for="cid">
+                                        ID
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cname" name="checkname"
+                                        value="true" <%= option.name ? `checked` : `` %>>
+                                    <label class="form-check-label" for="cname">
+                                        Name
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cposition" name="checkposition"
+                                        value="true" <%= option.position ? `checked` : `` %>>
+                                    <label class="form-check-label" for="cposition">
+                                        Position
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                            <br>
+                            <button type="submit" class="btn btn-success">apply</button>
+                        </form>
+                        <br>
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th <%= option.id ? `` : `hidden` %>> ID </th>
+                                    <th <%= option.name ? `` : `hidden` %>> NAME</th>
+                                    <th <%= option.position ? `` : `hidden` %>> POSITION </th>
+                                    <th>ACTION</th>
+                            </thead>
+                            <% data.forEach((item, index) => {  %>
+                            <tr scope="row">
+                                <td <%= option.id ? `` : `hidden` %>>
+                                    <%=item.id%>
+                                </td>
+                                <td <%= option.name ? `` : `hidden` %>> <%=item.fullname%> </td>
+                                <td <%= option.position ? `` : `hidden` %>> <%=item.role%> </td>
+                                <td>
+                                    <a class="btn btn-outline-success"
+                                            href="/projects/<%=item.projectid%>/members/edit/<%= item.id%>"> edit
+                                        </a>
+                                    <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');"
+                                        href="/projects/<%=item.projectid%>/members/delete/<%= item.id%>"> delete
+                                        </a>
+                                </td>
+                            </tr>
+                            <%   }) %>
+                        </table>
+                        <br>
+
+                        <a href="/projects/<%= projectid %>/members/add" <button class="btn btn-success">Add New
+                            Member</button>
+                        </a>
+                    </div>
+                    <br>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
