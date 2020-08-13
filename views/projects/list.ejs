@@ -134,7 +134,7 @@
                     <td>
                         <a class="btn btn-outline-success" href="/projects/edit/<%=item.projectid%>"> edit
                             </a>
-                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');" href="/projects/delete/<%=item.projectid%>"> delete </a>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');" href="/projects/delete/<%=item.projectid%>" <%= login.as == 'user' ? 'hidden' : '' %>> delete </a>
                     </td>
                 </tr>
                 <%   }) %>

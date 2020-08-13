@@ -506,6 +506,7 @@ module.exports = (db) => {
                 })
                 console.log(dataProject.rows);
                 res.render('projects/members/edit', {
+                    login: req.session.user,
                     projectid,
                     id,
                     member: dataMember.rows[0],

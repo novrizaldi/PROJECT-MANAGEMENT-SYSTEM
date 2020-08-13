@@ -8,8 +8,8 @@
 </head>
 <body>
     <div style="margin: 10px 100px 10px 150px;">
-        <h3> ADD NEW USERS</h3>
-        <form action="" method="GET" id="formFilter" style="margin: 10px 100px 10px 150px;">
+        <h3> EDIT USERS</h3>
+        <form action="" method="POST" id="formFilter" style="margin: 10px 100px 10px 150px;">
 
             <div class="row">
                 <div class="col">
@@ -76,23 +76,37 @@
             </div>
 
             <div class="row">
-                <div class="col">
+                <legend class="col-form-label col-sm-2 pt-0"> Position </legend>
+                <div class="col-sm-10">
+
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="checkposition" id="member">
-                        <label class="form-check-label" for="member">
-                            Position 
+                        <input class="form-check-input" type="radio" name="position" id="qa"
+                            value="Quality Assurance "  <%=data.position == 'Quality Assurance' ? 'checked' : '' %>>
+                        <label class="form-check-label" for="qa">
+                            Quality Assurance
                         </label>
                     </div>
-                </div>
-                <div class="col-10">
-                    <div class="form-group">
-                        <select name="position" id="position" class="form-control">
-                            <option selected value="<%= data.position%>"><%= data.position%></option>
-                        </select>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="position"
+                            id="manager" value="Manager" <%=data.position == 'Manager' ? 'checked' : '' %>>
+                        <label class="form-check-label" for="manager">
+                            Manager
+                        </label>
                     </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="position"
+                            id="sd" value="Software Developer" <%=data.position == 'Software Developer' ? 'checked' : '' %>>
+                        <label class="form-check-label" for="sd">
+                            Software Developer
+                        </label>
+                    </div>
+
                 </div>
             </div>
 
+            <br>
             <div class="row">
                 <legend class="col-form-label col-sm-2 pt-0">Type Job</legend>
                 <div class="col-sm-10">
@@ -107,7 +121,7 @@
 
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="typejob"
-                            id="parttime" value="parttime" <%=data.typejob == 'parttime' ? 'checked' : 'disabled' %>>
+                            id="parttime" value="parttime" <%=data.typejob == 'parttime' ? 'checked' : '' %>>
                         <label class="form-check-label" for="parttime">
                             Part time
                         </label>
@@ -122,7 +136,7 @@
 
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="as" id="admin"
-                                value="Admin" <%=data.as == 'Admin' ? 'checked' : 'disabled' %>>
+                                value="admin" <%=data.as == 'admin' ? 'checked' : '' %>>
                             <label class="form-check-label" for="admin">
                                 Admin
                             </label>
@@ -130,16 +144,17 @@
 
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="as"
-                                id="user" value="User"  <%=data.as == 'User' ? 'checked' : 'disabled' %>>
+                                id="user" value="user"  <%=data.as == 'user' ? 'checked' : '' %>>
                             <label class="form-check-label" for="user">
                                 User
                             </label>
                         </div>
                     </div>
                 </div>
-          
+          <br>
             
-            <button type="submit" class="btn btn-success">Add</button>
+            <button type="submit" class="btn btn-success">edit</button>
+            
         </form>
     </div>
 </body>

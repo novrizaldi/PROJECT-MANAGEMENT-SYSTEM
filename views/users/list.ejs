@@ -165,6 +165,16 @@
                     </div>
                 </div>
 
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="as" name="checkas" value="true"
+                            <%= option.as ? `checked` : `` %>>
+                        <label class="form-check-label" for="as">
+                            As
+                        </label>
+                    </div>
+                </div>
+
             </div>
             <br>
             <button type="submit" class="btn btn-success">apply</button>
@@ -181,6 +191,7 @@
                         <th <%= option.email ? `` : `hidden` %>> EMAIL </th>
                         <th <%= option.position ? `` : `hidden` %>> POSITION </th>
                         <th <%= option.typejob ? `` : `hidden` %>> TYPE JOB </th>
+                        <th <%= option.as ? `` : `hidden` %>> AS </th>
                         <th>ACTION</th>
                 </thead>
                 <% data.forEach((item, index) => {  %>
@@ -190,10 +201,11 @@
                     <td <%= option.email ? `` : `hidden` %>> <%=item.email%> </td>
                     <td <%= option.position ? `` : `hidden` %>> <%=item.position%> </td>
                     <td <%= option.typejob ? `` : `hidden` %>> <%=item.typejob%> </td>
+                    <td <%= option.as ? `` : `hidden` %>> <%=item.as%> </td>
                     <td>
                         <a class="btn btn-outline-success" href="/users/edit/<%=item.userid%>"> edit
                             </a>
-                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');" href="/projects/delete/<%=item.userid%>"> delete </a>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Are you sure ?');" href="/users/delete/<%=item.userid%>"> delete </a>
                     </td>
                 </tr>
                 <%   }) %>

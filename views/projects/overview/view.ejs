@@ -12,8 +12,8 @@
     <div class="container-fluid">
         <div class="row">
             <% include ../../partials/sidebar%>
-            
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <main role="main" class="col-md-6">
                 <h4 style="text-align: left;">Overview</h4>
                 <h3 style="text-align: left;">
 
@@ -24,47 +24,47 @@
                 <div class="row">
                     <div class="col-10 offset-1">
                         <div class="card issue-tracker">
-                            <div class="card-header text-white bg-dark">
+                            <div class="card-header card border-info mb-3">
                                 <h5>Issue Tracker</h5>
                             </div>
                             <div class="card-body">
-                                <div class="card">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item ">
-                                            <div class="row">
-                                                <h6 class="col" style="text-align: left;">Bug</h6>
-                                                <div style="text-align: right;">
-                                                    <h6><span style="text-align: right;">
+
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item ">
+                                        <div class="row">
+                                            <h6 class="col" style="text-align: left;">Bug</h6>
+                                            <div style="text-align: right;">
+                                                <h6><span style="text-align: right;">
                                                         <%=bugOpen%> Open/<%=bugTotal%>
-                                                        </span>
-                                                    </h6>
-                                                </div>
+                                                    </span>
+                                                </h6>
                                             </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <h6 class="col" style="text-align: left;">Feature</h6>
-                                                <div style="text-align: right;">
-                                                    <h6><span style="text-align: right;">
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <h6 class="col" style="text-align: left;">Feature</h6>
+                                            <div style="text-align: right;">
+                                                <h6><span style="text-align: right;">
                                                         <%=featureOpen%> Open/<%=featureTotal%>
-                                                        </span>
-                                                    </h6>
-                                                </div>
+                                                    </span>
+                                                </h6>
                                             </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <h6 class="col" style="text-align: left;">Support</h6>
-                                                <div style="text-align: right;">
-                                                    <h6><span style="text-align: right;">
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <h6 class="col" style="text-align: left;">Support</h6>
+                                            <div style="text-align: right;">
+                                                <h6><span style="text-align: right;">
                                                         <%=supportOpen%> Open/<%=supportTotal%>
-                                                        </span>
-                                                    </h6>
-                                                </div>
+                                                    </span>
+                                                </h6>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -75,24 +75,21 @@
                 <div class="row">
                     <div class="col-10 offset-1">
                         <div class="card issue-tracker">
-                            <div class="card-header text-white bg-dark">
+                            <div class="card-header card border-info mb-3">
                                 <h5>Members</h5>
                             </div>
                             <div class="card-body">
-                                <div class="card">
-                                    <ul class="list-group list-group-flush">
-                                        <% members.forEach((item, index) => {  %>
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <h6 class="col" style="text-align: left; font-weight: bolder;">
-                                                    <%=item.firstname + ' ' + item.lastname%> </h6>
-                                                <span 
-                                                    style="text-align: right;"><%=item.role%> </span>
-                                            </div>
-                                        </li>
-                                        <%   }) %>
-                                    </ul>
-                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <% members.forEach((item, index) => {  %>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <h6 class="col" style="text-align: left; font-weight: bolder;">
+                                                <%=item.firstname + ' ' + item.lastname%> </h6>
+                                            <span style="text-align: right;"><%=item.role%> </span>
+                                        </div>
+                                    </li>
+                                    <%   }) %>
+                                </ul>
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ module.exports = (db) => {
         res.render('profile/view', {
           user,
           data: data.rows[0],
-          login: req.session.users
+          login: req.session.user
         })
       })
     });
