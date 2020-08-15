@@ -2,4 +2,4 @@ node_modules
 package-lock.json
 .DS_Store 
 
-# DS_Store untuk pengguna mac os saat clone data dr git kita
+# DS_Store untuk pengguna mac os, agar tak ada kendala saat clone data dr git kita
